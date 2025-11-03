@@ -1,14 +1,12 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
-# Instalar Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update && apt-get install -y \
+    git curl libpng-dev libonig-dev libxml2-dev \
+    zip unzip libzip-dev
 
-# Instalar Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-RUN apt-get update && apt-get install -y nodejs
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Habilitar mod_rewrite de Apache
-RUN a2enmod rewrite
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Directorio de trabajo
-WORKDIR /var/www/html
+WORKDIR /var/www
+CMD ["php-fpm", "-F", "-R"]
