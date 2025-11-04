@@ -13,16 +13,14 @@ services:
 
   webserver:
     image: httpd:alpine
-    container_name: laravel_apache
+    container_name: laravel_webserver
     restart: unless-stopped
     ports:
       - "8000:80"
     volumes:
       - ./src:/var/www
-      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./apache/vhost.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
-    depends_on:
-      - app
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf  # Apache config path
+      - ./apache/vhost.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf  # Virtual hosts
     networks:
       - laravel
 
@@ -31,10 +29,10 @@ services:
     container_name: laravel_db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: ProyectoCursoAsignaciones
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_PASSWORD: password
-      MYSQL_USER: laravel
+      MYSQL_PASSWORD: columbinastan
+      MYSQL_USER: musso
     volumes:
       - dbdata:/var/lib/mysql
     ports:
@@ -42,13 +40,20 @@ services:
     networks:
       - laravel
 
-  redis:
-    image: redis:alpine
-    container_name: laravel_redis
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: laravel_phpmyadmin
+    restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
     networks:
       - laravel
+    depends_on:
+      - db
 
 volumes:
   dbdata:
