@@ -2,16 +2,16 @@
     <nav class="navbar navbar-dark bg-dark">
         <ul class="unstyled text-white pt-2 list-inline">
             <li class="me-4 list-inline-item">
-                <a href="{{ route('home') }}" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade {{ request()->routeIs('home') ? 'active-nav' : '' }}">Inicio</a>
+                <a href="#" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade">Inicio</a>
             </li>
             <li class="me-4 list-inline-item">
-                <a href="{{ route('employees') }}" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade {{ request()->routeIs('employees') ? 'active-nav' : '' }}">Empleados</a>
+                <a href="#" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade ">Empleados</a>
             </li>
             <li class="me-4 list-inline-item">
-                <a href="{{ route('companies') }}" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade {{ request()->routeIs('companies') ? 'active-nav' : '' }}">Empresas</a>
+                <a href="#" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade ">Empresas</a>
             </li>
             <li class="me-4 list-inline-item">
-                <a href="{{ route('assignments') }}" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade {{ request()->routeIs('assignments') ? 'active-nav' : '' }}">Asignaciones</a>
+                <a href="#" class="text-decoration-none text-white px-4 py-4 rounded hover-bg-fade ">Asignaciones</a>
             </li>
         </ul>
     </nav>
