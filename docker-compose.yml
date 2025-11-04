@@ -8,19 +8,9 @@ services:
     working_dir: /var/www
     volumes:
       - ./src:/var/www
-    networks:
-      - laravel
-
-  webserver:
-    image: httpd:alpine
-    container_name: laravel_webserver
-    restart: unless-stopped
     ports:
-      - "8000:80"
-    volumes:
-      - ./src:/var/www
-      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf  # Apache config path
-      - ./apache/vhost.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf  # Virtual hosts
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0 --port=8000
     networks:
       - laravel
 
