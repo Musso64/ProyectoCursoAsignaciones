@@ -1,0 +1,16 @@
+.hover-bg-fade:hover {
+    background-color: rgba(255,255,255,0.15);
+    transition: background-color 0.2s ease;
+}
+.active-nav {
+    background-color: rgba(255, 30, 30, 0.4); 
+}
+.list-inline-item a {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    margin: -0.5rem 0;
+    text-decoration: none;
+}
+.title-colored-text {
+    color:rgba(255, 30, 30, 0.4);
+}

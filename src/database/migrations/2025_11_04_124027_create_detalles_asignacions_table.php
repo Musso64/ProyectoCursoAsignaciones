@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('assigned_date')->nullable(false);
             $table->date('due_date')->nullable(false);
             $table->enum('status',['Pendiente','En progreso','Completada','Cancelada'])->default('Pendiente')->nullable(false);
+            $table->softDeletes();
         });
     }
 

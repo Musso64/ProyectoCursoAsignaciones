@@ -1,7 +1,25 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EmpresasController;
+use App\Http\Controllers\DetallesAsignacionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('index');
-})->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+Route::resource('/employees', EmpleadoController::class)
+->missing(function (Request $request) {
+    return Redirect::route('employees.index');
+});
+
+Route::resource('/companies', EmpresaController::class)
+->missing(function (Request $request) {
+    return Redirect::route('companies.index');
+});
+
+Route::resource('/assignments', DetallesAsignacionController::class)
+->missing(function (Request $request) {
+    return Redirect::route('assignments.index');
+});

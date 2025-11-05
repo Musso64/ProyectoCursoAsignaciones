@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('address',100)->nullable(false);
             $table->string('phone',15)->nullable(false);
             $table->string('email',50)->nullable(false);
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('empleado_ci')->references('ci')->on('empleados')->onDelete('cascade');
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
             $table->foreign('detalles_asignacions_id')->references('id')->on('detalles_asignacions')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

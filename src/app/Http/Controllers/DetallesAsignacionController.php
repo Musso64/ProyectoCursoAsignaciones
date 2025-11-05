@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detalles_asignacion;
+use App\Models\Detalles_Asignacion;
 use Illuminate\Http\Request;
 
 class DetallesAsignacionController extends Controller

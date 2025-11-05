@@ -24,6 +24,7 @@ return new class extends Migration
             $table->enum('position',['Gerente','Asistente','Senior','Socio'])->default('Asistente')->nullable(false);
             $table->enum('status',['Activo','Inactivo'])->default('Activo')->nullable(false);
             $table->enum('department',['Administracion','Impuesto','IT','Marketing','Auditoria'])->default('Auditoria')->nullable(false    );
+            $table->softDeletes();
         });
     }
 

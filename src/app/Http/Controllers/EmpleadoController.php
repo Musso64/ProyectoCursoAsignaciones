@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\empleado;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller

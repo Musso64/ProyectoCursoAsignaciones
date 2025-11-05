@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\asignaciones;
+use App\Models\Asignaciones;
 use Illuminate\Http\Request;
 
 class AsignacionesController extends Controller
