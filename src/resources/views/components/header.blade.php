@@ -7,13 +7,13 @@
                     <a href="{{ route('home') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->routeIs('home') ? 'active-nav' : '' }}">Inicio</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="{{ route('employees.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->routeIs('employees') ? 'active-nav' : '' }}">Empleados</a>
+                    <a href="{{ route('employees.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->is('employees*') ? 'active-nav' : '' }}">Empleados</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="{{ route('companies.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->routeIs('companies') ? 'active-nav' : '' }}">Empresas</a>
+                    <a href="{{ route('companies.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->is('companies*') ? 'active-nav' : '' }}">Empresas</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="{{ route('assignments.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->routeIs('assignments') ? 'active-nav' : '' }}">Asignaciones</a>
+                    <a href="{{ route('assignments.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->is('assignments*') ? 'active-nav' : '' }}">Asignaciones</a>
                 </li>
             </ul>
         </div>

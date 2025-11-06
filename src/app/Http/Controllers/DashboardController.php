@@ -12,10 +12,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $empleados= Empleado::all();
-        $empresas= Empresa::all();
-        $asignaciones= Asignaciones::all();
-        $detalles_asignacions= Detalles_Asignacion::all();
+        $empleados= Empleado::with('asignaciones')->get();
+        $empresas= Empresa::with('asignaciones')->get();
+        $asignaciones= Asignaciones::with(['empleados','empresas','detalles_asignacions'])->get();
+        $detalles_asignacions= Detalles_Asignacion::with('asignaciones')->get();
 
         return view('dashboard',[
             'empleados'=> $empleados,

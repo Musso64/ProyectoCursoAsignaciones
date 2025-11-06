@@ -8,4 +8,9 @@ class Empresa extends Model
 {
     public $timestamps = false;
     protected $table = "empresas";
+
+    public function asignaciones()
+    {
+        return $this->hasMany(Asignaciones::class,'empresa_id','id');
+    }
 }
