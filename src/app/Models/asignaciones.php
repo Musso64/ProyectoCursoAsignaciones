@@ -10,6 +10,11 @@ class Asignaciones extends Model
 {
     public $timestamps = false;
     protected $table = "asignaciones";
+    protected $fillable = [
+        'empleado_ci',
+        'empresa_id',
+        'detalles_asignacions_id'
+    ];
     public function empleados ():BelongsTo
     {
         return $this->belongsTo(Empleado::class,'empleado_ci','ci');

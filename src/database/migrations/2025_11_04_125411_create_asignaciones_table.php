@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('asignaciones', function (Blueprint $table) {
-            $table->integer('empleado_ci',8)->nullable(false);
+            $table->id();
+            $table->integer('empleado_ci')->nullable(false);
             $table->unsignedBigInteger('empresa_id')->nullable(false);
             $table->unsignedBigInteger('detalles_asignacions_id')->nullable(false);
             $table->foreign('empleado_ci')->references('ci')->on('empleados')->onDelete('cascade');
