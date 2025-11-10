@@ -12,6 +12,11 @@ class Empleado extends Model
     protected $primaryKey = "ci";
     public $incrementing = false;
     public $timestamps = false;
+
+        public function getRouteKeyName()
+    {
+        return 'ci';
+    }
     public function asignaciones()
     {
         return $this->hasMany(Asignaciones::class,'empleado_ci','ci');

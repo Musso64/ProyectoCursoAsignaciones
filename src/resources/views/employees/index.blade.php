@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - Gestion</title>
+    <title>Empleados - Gestion</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -25,6 +25,7 @@
                         <th>Fecha de Contratacion</th>
                         <th>Posición</th>
                         <th>Departamento</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,20 @@
                         <td>{{ $empleado->hiredate }}</td>
                         <td>{{ $empleado->position }}</td>  
                         <td>{{ $empleado->department }}</td>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="{{ route('employees.show', $empleado->ci) }}" class="btn btn-primary btn-sm">
+                                    Ver
+                                </a>
+                                <form action="{{ route('employees.destroy', $empleado->ci) }}" method="POST" class="m-0">
+                                @csrf
+                                @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este empleado?')">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

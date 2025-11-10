@@ -58,26 +58,30 @@ class EmpleadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Empleado $empleado)
+    public function show(Empleado $empleado) 
     {
-        return view('employees.show', compact('empleado'));
-
+    $empleado->load('asignaciones.empresas', 'asignaciones.detalles_asignacions');
+    return view('employees.show', compact('empleado'));
     }
     /**
      * Show the form for editing the specified resource.
      */
 
-    public function edit(empleado $empleado)
+    public function edit(Empleado $empleado)
     {
-        //
+        $departments = EnumHelper::getValues('empleados', 'department');
+        $positions = EnumHelper::getValues('empleados', 'position');
+        return view('employees.edit', compact('empleado', 'departments', 'positions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, empleado $empleado)
+    public function update(Request $request, Empleado $employee)
     {
-        //
+    // For now, simple update without validation
+    $employee->update($request->all());
+    return redirect()->route('employees.show', $employee->ci)->with('success', 'Empleado actualizado correctamente');
     }
 
     /**
