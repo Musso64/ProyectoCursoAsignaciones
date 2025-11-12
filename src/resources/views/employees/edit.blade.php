@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="fname" id="fname" class="form-control" value="{{ $empleado->fname }}" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" required>
+                            <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror" value="{{ $empleado->fname }}" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" required>
                             <label for="fname">Primer Nombre <span class="text-danger">*</span></label>
                         </div>
                     </div>

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->integer('ci',8)->primary()->unique()->nullable(false);
             $table->string('fname',20)->nullable(false);
-            $table->string('sname',20);
+            $table->string('sname',20)->nullable();
             $table->string('flastname',20)->nullable(false);
-            $table->string('slastname',20);
+            $table->string('slastname',20)->nullable();
             $table->string('email',100);
             $table->string('phonenumber',15);
             $table->date('birthdate')->nullable(false);

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detalles_asignacions', function (Blueprint $table) {
             $table->id()->primary()->unique();
             $table->string('assignation_name',100)->nullable(false);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->date('assigned_date')->nullable(false);
             $table->date('due_date')->nullable(false);
             $table->enum('status',['Pendiente','En progreso','Completada','Cancelada'])->default('Pendiente')->nullable(false);
