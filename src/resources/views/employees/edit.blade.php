@@ -20,13 +20,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="fname" id="fname" class="form-control" value="{{ $empleado->fname }}" required>
-                            <label for="fname">Primer Nombre</label>
+                            <input type="text" name="fname" id="fname" class="form-control" value="{{ $empleado->fname }}" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" required>
+                            <label for="fname">Primer Nombre <span class="text-danger">*</span></label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="sname" id="sname" class="form-control" value="{{ $empleado->sname }}">
+                            <input type="text" name="sname" id="sname" class="form-control" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" value="{{ $empleado->sname }}">
                             <label for="sname">Segundo Nombre</label>
                         </div>
                     </div>
@@ -35,36 +35,36 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="flastname" id="flastname" class="form-control" value="{{ $empleado->flastname }}" required>
-                            <label for="flastname">Primer Apellido</label>
+                            <input type="text" name="flastname" id="flastname" class="form-control" value="{{ $empleado->flastname }}" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20" required>
+                            <label for="flastname">Primer Apellido <span class="text-danger">*</span></label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="slastname" id="slastname" class="form-control" value="{{ $empleado->slastname }}">
+                            <input type="text" name="slastname" id="slastname" class="form-control" value="{{ $empleado->slastname }}" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20">
                             <label for="slastname">Segundo Apellido</label>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="number" name="ci" id="ci" class="form-control" value="{{ $empleado->ci }}" disabled>
-                    <label for="ci">Cédula</label>
+                    <input type="number" name="ci" id="ci" class="form-control" value="{{ $empleado->ci }}" disabled title="Escribir unicamente la cedula, sin puntos." required pattern="d{7,8}">
+                    <label for="ci">Cédula <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="email" name="email" id="email" class="form-control" required value="{{ $empleado->email }}">
-                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" value="{{ $empleado->email }}" pattern="[a-zA-Z0-9._%+-]+@lmagnoaudittore\.com" title="El correo debe de pertener al dominio de la empresa." required>
+                    <label for="email">Email <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="text" name="phonenumber" id="phonenumber" class="form-control" value="{{ $empleado->phonenumber}}">
-                    <label for="phonenumber">Número de Teléfono</label>
+                    <input type="text" name="phonenumber" id="phonenumber" class="form-control" required pattern="0\d{3}-\d{7}" title="Formato de referencia: 0412-3456789" value="{{ $empleado->phonenumber}}">
+                    <label for="phonenumber">Número de Teléfono <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
                     <input type="date" name="birthdate" id="birthdate" class="form-control" value="{{ $empleado->birthdate }}" disabled>
-                    <label for="birthdate">Fecha de Nacimiento</label>
+                    <label for="birthdate">Fecha de Nacimiento <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="text" name="hiredate" id="hiredate" class="form-control" value="{{ $empleado->hiredate }}" disabled>
-                    <label for="hiredate">Fecha de Contratación</label>
+                    <input type="date" name="hiredate" id="hiredate" class="form-control" value="{{ $empleado->hiredate }}" disabled>
+                    <label for="hiredate">Fecha de Contratación <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
                     <select name="department" id="department" class="form-select">
@@ -76,7 +76,7 @@
                             @endif
                         @endforeach
                     </select>
-                    <label for="department">Departamento</label>
+                    <label for="department">Departamento <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3 form-floating">
                     <select name="position" id="position" class="form-select">
@@ -88,11 +88,11 @@
                             @endif
                         @endforeach
                     </select>
-                    <label for="position">Posicion</label>
+                    <label for="position">Posicion <span class="text-danger">*</span></label>
                 </div>
                 <div class="mb-3">
-                    <label for="profile_picture" class="form-label">Foto de Perfil</label>
-                    <input type="file" name="profile_picture" id="profile_picture" class="form-control" accept="image/*">
+                    <label for="photo" class="form-label">Foto de Perfil</label>
+                    <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
                     <div class="form-text">Formatos: JPG, PNG, GIF. Máximo 2MB.</div>
                 </div>
                 <button type="submit" value="create" class="btn btn-success">Modificar Empleado</button>

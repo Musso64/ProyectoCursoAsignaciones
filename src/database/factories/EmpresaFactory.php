@@ -16,11 +16,13 @@ class EmpresaFactory extends Factory
      */
     public function definition(): array
     {
+        $firstPhoneDigit = $this->faker->numberBetween(100,999);
+        $secondPhoneDigit = $this->faker->numberBetween(1000000,9999999);
         return [
             'name' => $this->faker->company(),
             'email' => $this->faker->unique()->companyEmail(),
             'address' => $this->faker->address(),
-            'phone' => $this->faker->phoneNumber()
+            'phone' => Str::lower('0'.$firstPhoneDigit.'-'.$secondPhoneDigit)
         ];
     }
 }

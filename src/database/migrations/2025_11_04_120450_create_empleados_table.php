@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('sname',20);
             $table->string('flastname',20)->nullable(false);
             $table->string('slastname',20);
-            $table->string('email',50);
+            $table->string('email',100);
             $table->string('phonenumber',15);
             $table->date('birthdate')->nullable(false);
             $table->date('hiredate')->nullable(false);

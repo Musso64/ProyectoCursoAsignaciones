@@ -19,14 +19,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="fname" id="fname" class="form-control" required>
-                            <label for="fname">Primer Nombre</label>
+                            <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror " title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" required>
+                            <label for="fname">Primer Nombre <span class="text-danger">*</span></label>
+                            @error('fname')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="sname" id="sname" class="form-control">
+                            <input type="text" name="sname" id="sname" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" class="form-control @error('sname') is-invalid @enderror">
                             <label for="sname">Segundo Nombre</label>
+                            @error('sname')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -34,53 +44,99 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="flastname" id="flastname" class="form-control" required>
-                            <label for="flastname">Primer Apellido</label>
+                            <input type="text" name="flastname" id="flastname" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20" class="form-control @error('flastname') is-invalid @enderror" required>
+                            <label for="flastname">Primer Apellido <span class="text-danger">*</span></label>
+                            @error('flastname')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="slastname" id="slastname" class="form-control">
-                            <label for="slastname">Segundo Apellido</label>
+                            <input type="text" name="slastname" id="slastname" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20" class="form-control @error('slastname') is-invalid @enderror">
+                            <label for="slastname">Segundo Apellido </label>
+                            @error('slastname')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="number" name="ci" id="ci" class="form-control">
-                    <label for="ci">Cédula</label>
+                    <input type="number" name="ci" id="ci" class="form-control @error('ci') is-invalid @enderror" title="Escribir unicamente la cedula, sin puntos." required pattern="d{7,8}">
+                    <label for="ci">Cédula <span class="text-danger">*</span></label>
+                    @error('ci')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="email" name="email" id="email" class="form-control" required>
-                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" pattern="[a-zA-Z0-9._%+-]+@lmagnoaudittore\.com" title="El correo debe de pertener al dominio de la empresa." required>
+                    <label for="email">Email <span class="text-danger">*</span></label>
+                    @error ('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="text" name="phonenumber" id="phonenumber" class="form-control">
-                    <label for="phonenumber">Número de Teléfono</label>
+                    <input type="text" name="phonenumber" id="phonenumber" required pattern="0\d{3}-\d{7}" title="Formato de referencia: 0412-3456789"  class="form-control @error('phonenumber') is-invalid @enderror">
+                    <label for="phonenumber">Número de Teléfono <span class="text-danger">*</span></label>
+                    @error('phonenumber')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="date" name="birthdate" id="birthdate" class="form-control">
-                    <label for="birthdate">Fecha de Nacimiento</label>
+                    <input type="date" name="birthdate" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" required>
+                    <label for="birthdate">Fecha de Nacimiento <span class="text-danger">*</span></label>
+                    @error('birthdate')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <select name="department" id="department" class="form-select">
+                    <select name="department" id="department" class="form-select @error('department') is-invalid
+                    @enderror" required>
                         @foreach ($departments as $department)
                             <option value="{{ $department }}">{{ $department }}</option>
                         @endforeach
                     </select>
-                    <label for="department">Departamento</label>
+                    <label for="department">Departamento <span class="text-danger">*</span></label>
+                    @error('department')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <select name="position" id="position" class="form-select">
+                    <select name="position" id="position" class="form-select @error('position') is-invalid @enderror" required>
                         @foreach ($positions as $position)
                             <option value="{{ $position }}">{{ $position }}</option>
                         @endforeach
                     </select>
-                    <label for="position">Posicion</label>
+                    <label for="position">Posicion <span class="text-danger">*</span></label>
+                    @error('position')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="photo" class="form-label">Foto de Perfil</label>
-                    <input type="file" name="photo" id="photo" class="form-control" accept="image/*">
+                    <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror" accept="image/*">
                     <div class="form-text">Formatos: JPG, PNG, GIF. Máximo 2MB.</div>
+                    @error('photo')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <button type="submit" value="create" class="btn btn-success">Crear Empleado</button>
             </form>
