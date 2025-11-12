@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Empleado extends Model
 {
     use SoftDeletes;
+    use HasFactory;
     protected $table = "empleados";
     protected $primaryKey = "ci";
     public $incrementing = false;
@@ -32,6 +34,7 @@ class Empleado extends Model
             'email',
             'phonenumber',
             'hiredate',
-            'birthdate'
+            'birthdate',
+            'photo'
         ];
 }

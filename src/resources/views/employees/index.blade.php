@@ -9,14 +9,54 @@
 </head>
 <body>
     <x-header></x-header>
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
     <div class="card rounded mx-5 mb-3 mt-5">
         <div class="card-header py-3">
             <h5>Empleados: </h5>
         </div>
-        <div class="card-body shadow-sm">
-            <table class="table table-dark table-striped table-hover table-rounded">
+        <form method="GET" action="{{ route('employees.index') }}" class="mb-4 ms-4 mt-4">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label for="search" class="form-label">Buscar empleados</label>
+                    <input type="text" name="search" id="search" class="form-control" 
+                        placeholder="Nombre, cédula, email..." 
+                        value="{{ request('search') }}">
+                </div>
+                <div class="col-md-3">
+                    <select name="department" class="form-select">
+                        <option value="">Todos los departamentos</option>
+                        <option value="Administracion" {{ request('department') == 'Administracion' ? 'selected' : '' }}>Administración</option>
+                        <option value="IT" {{ request('department') == 'IT' ? 'selected' : '' }}>IT</option>
+                        <option value="Marketing" {{ request('department') == 'Marketing' ? 'selected' : '' }}>Marketing</option>
+                        <option value="Auditoria" {{ request('department') == 'Auditoria' ? 'selected' : '' }}>Auditoría</option>
+                        <option value="Impuesto" {{ request('department') == 'Impuesto' ? 'selected' : '' }}>Impuesto</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="position" class="form-select">
+                        <option value="">Todas las posiciones</option>
+                        <option value="Gerente" {{ request('position') == 'Gerente' ? 'selected' : '' }}>Gerente</option>
+                        <option value="Senior" {{ request('position') == 'Senior' ? 'selected' : '' }}>Senior</option>
+                        <option value="Asistente" {{ request('position') == 'Asistente' ? 'selected' : '' }}>Asistente</option>
+                        <option value="Socio" {{ request('position') == 'Socio' ? 'selected' : '' }}>Socio</option>
+                    </select>
+                </div>
+                <div class="col-md-auto">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <a href="{{ route('employees.index') }}" class="btn btn-secondary">Limpiar</a>
+                </div>
+            </div>
+        </form>
+        <div class="card-body shadow-sm overflow-auto table-responsive">
+            <table class="table table-sm table-dark table-striped table-hover table-rounded">
                 <thead>
                     <tr class="text-danger">
+                        <th>Foto:</th>
                         <th>Nombre</th>
                         <th>Cedula</th>
                         <th>Email</th>
@@ -29,11 +69,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($empleados->take(5) as $empleado)
+                    @foreach ($empleados as $empleado)
                     <tr>
+                        <td>
+                            <img src="{{ asset('images/' . $empleado->photo) }}" class="rounded-circle" width="40" height="40">
+                        </td>
                         <td>{{ $empleado->fname }} {{ $empleado->sname }} {{ $empleado->flastname }} {{ $empleado->slastname }}</td>
                         <td>{{ $empleado->ci }}</td>
-                        <td>{{ $empleado->email }}</td>
+                        <td class="text-truncate" style="max-width: 150px;">{{ $empleado->email }}</td>
                         <td>{{ $empleado->phonenumber }}</td>
                         <td>{{ $empleado->birthdate }}</td>
                         <td>{{ $empleado->hiredate }}</td>
@@ -57,6 +100,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $empleados->links('pagination::bootstrap-5') }}
+            </div>
             <div class="d-flex justify-content-between">
                 <span>
                     <p>Total de empleados: {{ count($empleados) }}</p>

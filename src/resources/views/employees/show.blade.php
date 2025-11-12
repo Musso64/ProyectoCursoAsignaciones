@@ -9,12 +9,22 @@
 </head>
 <body>
     <x-header></x-header>
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    @endif
     <div class="card rounded mx-5 mb-3 mt-5">
         <div class="card-header py-3">
             <h5>Empleado: </h5>
         </div>
         <div class="card-body shadow-sm">
             <dl class="row">
+            <dt class="col-sm-3">Foto:</dt>
+                <dd class="col-sm-9">
+                        <img src="{{ asset('images/' . $empleado->photo) }}" class="img-thumbnail" width="150">
+                </dd>
                 <dt class="col-sm-3">Nombre Completo</dt>
                 <dd class="col-sm-9">{{ $empleado->fname }} {{ $empleado->sname }} {{ $empleado->flastname }} {{ $empleado->slastname }}</dd>
                 <dt class="col-sm-3">Cedúla de Identidad</dt>
@@ -57,6 +67,9 @@
                     Eliminar
                 </button>
             </form>
+            <a href="{{ route('employees.index')}}" class="btn btn-primary btn-sm">
+                Regresar al inicio
+            </a>
             </div>
         </div> 
     </div>

@@ -5,16 +5,36 @@ namespace App\Http\Controllers;
 use App\Helpers\EnumHelper;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class EmpleadoController extends Controller
 {
-    /**
+  /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Empleado::query();
+        if ($request->has('search') and $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+            $q->where('fname', 'LIKE', "%{$search}%")
+            ->orWhere('sname', 'LIKE', "%{$search}%")
+            ->orWhere('flastname', 'LIKE', "%{$search}%")
+            ->orWhere('slastname', 'LIKE', "%{$search}%")
+            ->orWhere('ci', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->orWhere('phonenumber', 'LIKE', "%{$search}%");
+        });
+        }
+        if ($request->has('department') and $request->department != '') {
+            $query->where('department', $request->department);
+        }
+        if ($request->has('position') and $request->position != '') {
+            $query->where('position', $request->position);
+        }
+        $employees = $query->paginate(10);
         return view('employees.index', [
-            'empleados' => Empleado::all()
+            'empleados' => $employees
         ]);
     }
 
@@ -36,23 +56,25 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        $fullname= $request->input('name');
-        $nameParts= explode(' ', $fullname);
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('images', 'public');
+        }
         $date= date('Y-m-d');
         Empleado::create([
             'ci' => $request->input('ci'),
-            'fname' => $nameParts[0],
-            'sname'=> isset($nameParts[2]) ? $nameParts[2] : '',
-            'flastname' => isset($nameParts[1]) ? $nameParts[1] : '',
-            'slastname' => isset($nameParts[3]) ? $nameParts[3] : '',
+            'fname' => $request->input('fname'),
+            'sname'=> $request->input('sname'),
+            'flastname' => $request->input('flastname'),
+            'slastname' => $request->input('slastname'),
             'department' => $request->input('department'),
             'email'=> $request->input('email'),
             'phonenumber' => $request->input('phonenumber'),
             'position' => $request->input('position'),
             'hiredate' => $date,
-            'birthdate' => $request->input('birthdate')
+            'birthdate' => $request->input('birthdate'),
+            'photo' => isset($path) ? $path : 'default-avatar.png'
         ]);
-        return redirect()->route('employees.index')->with('success', 'Employee created!');
+        return redirect()->route('employees.index')->with('success', 'Empleado creado exitosamente');
     }
 
     /**
@@ -79,8 +101,26 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, Empleado $employee)
     {
-    // For now, simple update without validation
-    $employee->update($request->all());
+    if ($request->hasFile('photo')) {
+        // Delete old picture if exists
+        if ($employee->photo) {
+            Storage::disk('public')->delete($employee->photo);
+        }
+        
+        $path = $request->file('photo')->store('images', 'public');
+    }
+    $employee->update([
+        'fname' => $request->input('fname'),
+        'sname'=> $request->input('sname'),
+        'flastname' => $request->input('flastname'),
+        'slastname' => $request->input('slastname'),
+        'department' => $request->input('department'),
+        'email'=> $request->input('email'),
+        'phonenumber' => $request->input('phonenumber'),
+        'position' => $request->input('position'),
+        'birthdate' => $request->input('birthdate'),
+        'photo' => isset($path) ? $path : $employee->photo
+    ]);
     return redirect()->route('employees.show', $employee->ci)->with('success', 'Empleado actualizado correctamente');
     }
 
@@ -89,6 +129,7 @@ class EmpleadoController extends Controller
      */
     public function destroy(empleado $empleado)
     {
-        //
+        $empleado->delete();
+        return redirect()->route('employees.index')->with('success', 'Empleado eliminado correctamente');
     }
 }

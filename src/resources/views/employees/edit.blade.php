@@ -14,11 +14,37 @@
             <h5>Edición de Empleado: </h5>
         </div>
         <div class="card-body shadow-sm">
-            <form action="{{ route('employees.update', $empleado->ci) }}" method="post">
+            <form action="{{ route('employees.update', $empleado->ci) }}" enctype="multipart/form-data" method="post">
             @csrf
-                <div class="mb-3 form-floating">
-                    <input type="text" name="name" id="name" class="form-control" value="{{ $empleado->fname }} {{ $empleado->sname }} {{ $empleado->flastname }} {{ $empleado->slastname }}">
-                    <label for="name">Nombre Completo</label>
+            @method('PUT')
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="fname" id="fname" class="form-control" value="{{ $empleado->fname }}" required>
+                            <label for="fname">Primer Nombre</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="sname" id="sname" class="form-control" value="{{ $empleado->sname }}">
+                            <label for="sname">Segundo Nombre</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="flastname" id="flastname" class="form-control" value="{{ $empleado->flastname }}" required>
+                            <label for="flastname">Primer Apellido</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 form-floating">
+                            <input type="text" name="slastname" id="slastname" class="form-control" value="{{ $empleado->slastname }}">
+                            <label for="slastname">Segundo Apellido</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3 form-floating">
                     <input type="number" name="ci" id="ci" class="form-control" value="{{ $empleado->ci }}" disabled>
@@ -63,6 +89,11 @@
                         @endforeach
                     </select>
                     <label for="position">Posicion</label>
+                </div>
+                <div class="mb-3">
+                    <label for="profile_picture" class="form-label">Foto de Perfil</label>
+                    <input type="file" name="profile_picture" id="profile_picture" class="form-control" accept="image/*">
+                    <div class="form-text">Formatos: JPG, PNG, GIF. Máximo 2MB.</div>
                 </div>
                 <button type="submit" value="create" class="btn btn-success">Modificar Empleado</button>
             </form>
