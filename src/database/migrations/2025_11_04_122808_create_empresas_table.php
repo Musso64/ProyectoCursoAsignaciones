@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->id()->primary()->unique();
             $table->string('name',50)->nullable(false);
-            $table->string('address',100)->nullable(false);
+            $table->string('address',200)->nullable(false);
             $table->string('phone',15)->nullable(false);
-            $table->string('email',50)->nullable(false);
+            $table->string('email',100)->nullable(false);
             $table->softDeletes();
         });
     }
