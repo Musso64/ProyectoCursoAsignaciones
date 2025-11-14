@@ -119,7 +119,7 @@ class EmpleadoController extends Controller
             ]);
             $filename = $request['ci'] . '.' . $request->file('photo')->extension();
             $path = $request->file('photo')->storeAs('images', $filename, 'public');
-            $validated['photo'] = $path;
+            $validated['photo'] = $filename;
         } else{
             $validated['photo'] = 'default-avatar.png';
         }
@@ -131,7 +131,7 @@ class EmpleadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Empleado $empleado) 
+    public function show(Empleado $empleado)
     {
     $empleado->load('asignaciones.empresas', 'asignaciones.detalles_asignacions');
     return view('employees.show', compact('empleado'));
@@ -192,13 +192,13 @@ class EmpleadoController extends Controller
         'position.required' => 'El campo Puesto es obligatorio.',
         'position.string' => 'El campo Puesto debe ser una cadena de texto.',
         'position.in' => 'El campo Puesto seleccionado no es válido.',
-    ]);    
+    ]);
     if ($request->hasFile('photo')) {
-        
+
         if ($employee->photo and $employee->photo != 'default-avatar.png') {
             Storage::disk('public')->delete($employee->photo);
         }
-        
+
         $request->validate([
                 'photo' => 'image|max:2048|mimes:png,jpg,jpeg' // Max 2MB
             ], [
@@ -208,7 +208,7 @@ class EmpleadoController extends Controller
             ]);
         $filename = $request['ci'] . '.' . $request->file('photo')->extension();
         $path = $request->file('photo')->storeAs('images', $filename, 'public');
-        $validated['photo'] = $path;
+        $validated['photo'] = $filename;
     }
     $employee->update($validated);
     return redirect()->route('employees.show', $employee->ci)->with('success', 'Empleado actualizado correctamente');
