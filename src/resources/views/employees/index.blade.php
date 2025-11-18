@@ -23,9 +23,7 @@
             <div class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <label for="search" class="form-label">Buscar empleados</label>
-                    <input type="text" name="search" id="search" class="form-control" 
-                        placeholder="Nombre, cédula, email..." 
-                        value="{{ request('search') }}">
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Nombre, cédula, email..." value="{{ request('search') }}">
                 </div>
                 <div class="col-md-3">
                     <select name="department" class="form-select">

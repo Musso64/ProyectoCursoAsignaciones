@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror " title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" required>
+                            <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror " title="Maximo 20 caracteres, ingrese un nombre valido." value="{{ old('fname') }}" minlength="2" maxlength="20" required>
                             <label for="fname">Primer Nombre <span class="text-danger">*</span></label>
                             @error('fname')
                                 <div class="invalid-feedback">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="sname" id="sname" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" class="form-control @error('sname') is-invalid @enderror">
+                            <input type="text" name="sname" id="sname" title="Maximo 20 caracteres, ingrese un nombre valido." minlength="2" maxlength="20" value="{{ old('sname') }}" class="form-control @error('sname') is-invalid @enderror">
                             <label for="sname">Segundo Nombre</label>
                             @error('sname')
                                 <div class="invalid-feedback">
@@ -44,7 +44,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="flastname" id="flastname" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20" class="form-control @error('flastname') is-invalid @enderror" required>
+                            <input type="text" name="flastname" id="flastname" title="Maximo 20 caracteres, ingrese un apellido valido." value="{{ old('flastname') }}" minlength="2" maxlength="20" class="form-control @error('flastname') is-invalid @enderror" required>
                             <label for="flastname">Primer Apellido <span class="text-danger">*</span></label>
                             @error('flastname')
                                 <div class="invalid-feedback">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 form-floating">
-                            <input type="text" name="slastname" id="slastname" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" maxlength="20" class="form-control @error('slastname') is-invalid @enderror">
+                            <input type="text" name="slastname" id="slastname" title="Maximo 20 caracteres, ingrese un apellido valido." minlength="2" value="{{ old('slastname') }}" maxlength="20" class="form-control @error('slastname') is-invalid @enderror">
                             <label for="slastname">Segundo Apellido </label>
                             @error('slastname')
                                 <div class="invalid-feedback">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="number" name="ci" id="ci" class="form-control @error('ci') is-invalid @enderror" title="Escribir unicamente la cedula, sin puntos." required pattern="d{7,8}">
+                    <input type="number" name="ci" id="ci" value="{{ old('ci') }}" class="form-control @error('ci') is-invalid @enderror" title="Escribir unicamente la cedula, sin puntos." required pattern="d{7,8}">
                     <label for="ci">Cédula <span class="text-danger">*</span></label>
                     @error('ci')
                         <div class="invalid-feedback">
@@ -75,7 +75,7 @@
                     @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" pattern="[a-zA-Z0-9._%+-]+@lmagnoaudittore\.com" title="El correo debe de pertener al dominio de la empresa." required>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" pattern="[a-zA-Z0-9._%+-]+@lmagnoaudittore\.com" title="El correo debe de pertener al dominio de la empresa." required>
                     <label for="email">Email <span class="text-danger">*</span></label>
                     @error ('email')
                         <div class="invalid-feedback">
@@ -84,7 +84,7 @@
                     @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="text" name="phonenumber" id="phonenumber" required pattern="0\d{3}-\d{7}" title="Formato de referencia: 0412-3456789"  class="form-control @error('phonenumber') is-invalid @enderror">
+                    <input type="text" name="phonenumber" id="phonenumber" value="{{ old('phonenumber') }}" required pattern="0\d{3}-\d{7}" title="Formato de referencia: 0412-3456789"  class="form-control @error('phonenumber') is-invalid @enderror">
                     <label for="phonenumber">Número de Teléfono <span class="text-danger">*</span></label>
                     @error('phonenumber')
                         <div class="invalid-feedback">
@@ -93,7 +93,7 @@
                     @enderror
                 </div>
                 <div class="mb-3 form-floating">
-                    <input type="date" name="birthdate" id="birthdate" class="form-control @error('birthdate') is-invalid @enderror" required>
+                    <input type="date" name="birthdate" id="birthdate" value="{{ old('birthdate') }}" class="form-control @error('birthdate') is-invalid @enderror" required>
                     <label for="birthdate">Fecha de Nacimiento <span class="text-danger">*</span></label>
                     @error('birthdate')
                         <div class="invalid-feedback">
@@ -105,7 +105,7 @@
                     <select name="department" id="department" class="form-select @error('department') is-invalid
                     @enderror" required>
                         @foreach ($departments as $department)
-                            <option value="{{ $department }}">{{ $department }}</option>
+                            <option value="{{ $department }}" {{ old('department') == $department ? 'selected' : '' }}>{{ $department }}</option>
                         @endforeach
                     </select>
                     <label for="department">Departamento <span class="text-danger">*</span></label>
@@ -118,7 +118,7 @@
                 <div class="mb-3 form-floating">
                     <select name="position" id="position" class="form-select @error('position') is-invalid @enderror" required>
                         @foreach ($positions as $position)
-                            <option value="{{ $position }}">{{ $position }}</option>
+                            <option value="{{ $position }}" {{ old('position') == $position ? 'selected' : '' }}>{{ $position }}</option>
                         @endforeach
                     </select>
                     <label for="position">Posicion <span class="text-danger">*</span></label>

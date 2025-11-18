@@ -117,7 +117,7 @@ class EmpleadoController extends Controller
                 'photo.max' => 'La imagen no debe ser mayor a 2MB.',
                 'photo.mimes' => 'Los formatos permitidos son: PNG, JPG, JPEG.'
             ]);
-            $filename = $request['ci'] . '.' . $request->file('photo')->extension();
+            $filename = $request->input['ci'] . '.' . $request->file('photo')->extension();
             $path = $request->file('photo')->storeAs('images', $filename, 'public');
             $validated['photo'] = $filename;
         } else{
@@ -206,7 +206,7 @@ class EmpleadoController extends Controller
                 'photo.max' => 'La imagen no debe ser mayor a 2MB.',
                 'photo.mimes' => 'Los formatos permitidos son: PNG, JPG, JPEG.'
             ]);
-        $filename = $request['ci'] . '.' . $request->file('photo')->extension();
+        $filename = $request->input['ci'] . '.' . $request->file('photo')->extension();
         $path = $request->file('photo')->storeAs('images', $filename, 'public');
         $validated['photo'] = $filename;
     }

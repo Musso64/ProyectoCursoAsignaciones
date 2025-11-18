@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Detalles_Asignacion extends Model
+class Detalles_Asignacions extends Model
 {   
     use SoftDeletes;
+    use HasFactory;
     public $timestamps = false;
     protected $table = "detalles_asignacions";
     protected $fillable = [

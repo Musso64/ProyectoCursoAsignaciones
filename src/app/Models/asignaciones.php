@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Asignaciones extends Model
 {
     use SoftDeletes;
+    use HasFactory;
     public $timestamps = false;
     protected $table = "asignaciones";
     protected $fillable = [
@@ -27,7 +29,7 @@ class Asignaciones extends Model
     }
     public function detalles_asignacions(): BelongsTo
     {
-        return $this->belongsTo(Detalles_Asignacion::class,'detalles_asignacions_id','id');
+        return $this->belongsTo(Detalles_Asignacions::class,'detalles_asignacions_id','id');
     }
 
 }

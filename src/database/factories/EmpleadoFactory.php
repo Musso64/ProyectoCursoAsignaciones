@@ -29,7 +29,7 @@ class EmpleadoFactory extends Factory
             'email' => Str::lower($firstName . '.' . $lastName . '@lmagnoaudittore.com'),
             'phonenumber' => Str::lower('0'.$firstPhoneDigit.'-'.$secondPhoneDigit),
             'birthdate' => $this->faker->date($format = 'Y-m-d', $max = '2007-12-31'),
-            'hiredate' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'hiredate' => $this->faker->dateTimeBetween($startDate = '-20 years', $endDate = 'now')->format('Y-m-d'),
             'department' => $this->faker->randomElement(['Administracion','Impuesto','IT','Marketing','Auditoria']),
             'position' => $this->faker->randomElement(['Gerente','Asistente','Senior','Socio']),
             'photo' => 'default-avatar.png'
