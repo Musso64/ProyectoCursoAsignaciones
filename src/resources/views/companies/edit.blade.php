@@ -18,7 +18,7 @@
             @csrf
             @method('PUT')
                         <div class="mb-3 form-floating">
-                            <input type="text" name="name" id="fame" class="form-control @error('name') is-invalid @enderror" value="{{ $empresa->name }}" title="Maximo 50 caracteres, ingrese un nombre valido." minlength="2" maxlength="50" required>
+                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $empresa->name }}" title="Maximo 50 caracteres, ingrese un nombre valido." minlength="2" maxlength="50" required>
                             <label for="fname">Nombre <span class="text-danger">*</span></label>
                             @error('name')
                                 <div class="invalid-feedback">

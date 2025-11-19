@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-3">
                     <select name="status" class="form-select">
-                        <option value="">Todas los estados</option>
+                        <option value="">Todos los estados</option>
                         <option value="Completada" {{ request('status') == 'Completada' ? 'selected' : '' }}>Completada</option>
                         <option value="Pendiente" {{ request('status') == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
                         <option value="En progreso" {{ request('status') == 'En progreso' ? 'selected' : '' }}>En progreso</option>
