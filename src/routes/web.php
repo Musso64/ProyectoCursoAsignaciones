@@ -22,7 +22,7 @@ Route::bind('assignment', function ($value) {
     return Asignaciones::where('id', $value)->firstOrFail();
 });
 
-Route::get('/', [DashboardController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
 
 Route::resource('/employees', EmpleadoController::class)
 ->missing(function (Request $request) {
@@ -38,3 +38,6 @@ Route::resource('/assignments', AsignacionesController::class)
 ->missing(function (Request $request) {
     return Redirect::route('assignments.index');
 });
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
