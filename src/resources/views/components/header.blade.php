@@ -25,6 +25,11 @@
                 <li class="list-inline-item">
                     <a href="{{ route('assignments.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->is('assignments*') ? 'active-nav' : '' }}">Asignaciones</a>
                 </li>
+                @if(auth()->user()->role!='manager')
+                <li class="list-inline-item">
+                    <a href="{{ route('user.index') }}" class="text-white px-4 py-3 rounded hover-bg-fade {{ request()->is('user*') ? 'active-nav' : '' }}">Usuarios</a>
+                </li>
+                @endif
                 <li class="list-inline-item dropdown">
                     <a id="navbarDropdown" class="text-white px-4 py-3 rounded hover-bg-fade dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
@@ -34,7 +39,7 @@
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Cerrar Sesion') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

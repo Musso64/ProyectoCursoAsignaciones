@@ -57,6 +57,7 @@
                 @endif
             </dl>
             <div class="d-flex justify-content-end gap-2">
+            @if (auth()->user()->role != 'manager')
             <a href="{{ route('employees.edit', $empleado->ci) }}" class="btn btn-warning btn-sm">
                 Editar
             </a>
@@ -67,6 +68,7 @@
                     Eliminar
                 </button>
             </form>
+            @endif
             <a href="{{ route('employees.index')}}" class="btn btn-primary btn-sm">
                 Regresar al inicio
             </a>

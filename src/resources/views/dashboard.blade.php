@@ -110,6 +110,40 @@
             </div>
         </div>
     </div>
+    <div class="card rounded mx-5 mb-3">
+        <div class="card-header py-3">
+            <h5>Usuarios: </h5>
+        </div>
+        <div class="card-body shadow-sm">
+            <table class="table table-dark table-striped table-hover table-rounded">
+                <thead>
+                    <tr class="text-danger">
+                        <th>Nombre del Usuario</th>
+                        <th>Correo del Usuario</th>
+                        <th>Contraseña del Usuario</th>
+                        <th>Rol del Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($usuarios->take(5) as $usuari)
+                    <tr>
+                        <td>{{ $asignacion->name }}</td>
+                        <td>{{ $asignacion->email }}</td>
+                        <td>{{ $asignacion->password }}</td>  
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+                <span>
+                    <p>Total de asignaciones: {{ count($asignaciones) }}</p>
+                </span>
+                <span>
+                    <a href="{{ route('assignments.index') }}" class="btn text-dark btn-danger">Gestionar</a>
+                </span>
+            </div>
+        </div>
+    </div>
 </body>
 <x-footer></x-footer>
 </html>

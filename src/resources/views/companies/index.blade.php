@@ -54,6 +54,7 @@
                                 <a href="{{ route('companies.show', $empresa->id) }}" class="btn btn-primary btn-sm">
                                     Ver
                                 </a>
+                                @if (auth()->user()->role != 'manager')
                                 <form action="{{ route('companies.destroy', $empresa->id) }}" method="POST" class="m-0">
                                 @csrf
                                 @method('DELETE')
@@ -61,6 +62,7 @@
                                         Eliminar
                                     </button>
                                 </form>
+                                @endif
                             </div>
                         </td>
                     </tr>
