@@ -110,6 +110,7 @@
             </div>
         </div>
     </div>
+    @if(auth()->user()->role!='manager')
     <div class="card rounded mx-5 mb-3">
         <div class="card-header py-3">
             <h5>Usuarios: </h5>
@@ -120,30 +121,30 @@
                     <tr class="text-danger">
                         <th>Nombre del Usuario</th>
                         <th>Correo del Usuario</th>
-                        <th>Contraseña del Usuario</th>
                         <th>Rol del Usuario</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($usuarios->take(5) as $usuari)
+                    @foreach ($usuarios->take(5) as $usuario)
                     <tr>
-                        <td>{{ $asignacion->name }}</td>
-                        <td>{{ $asignacion->email }}</td>
-                        <td>{{ $asignacion->password }}</td>  
+                        <td>{{ $usuario->name }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>{{ $usuario->role }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="d-flex justify-content-between">
                 <span>
-                    <p>Total de asignaciones: {{ count($asignaciones) }}</p>
+                    <p>Total de Usuarios: {{ count($usuarios) }}</p>
                 </span>
                 <span>
-                    <a href="{{ route('assignments.index') }}" class="btn text-dark btn-danger">Gestionar</a>
+                    <a href="{{ route('user.index') }}" class="btn text-dark btn-danger">Gestionar</a>
                 </span>
             </div>
         </div>
     </div>
+    @endif
 </body>
 <x-footer></x-footer>
 </html>
