@@ -23,7 +23,7 @@
             <dl class="row">
             <dt class="col-sm-3">Foto:</dt>
                 <dd class="col-sm-9">
-                        <img src="{{ asset('storage/images/' . $empleado->photo) }}" class="img-thumbnail" width="150">
+                        <img src="{{ asset('images/' . $empleado->photo) }}" class="img-thumbnail" width="150">
                 </dd>
                 <dt class="col-sm-3">Nombre Completo</dt>
                 <dd class="col-sm-9">{{ $empleado->fname }} {{ $empleado->sname }} {{ $empleado->flastname }} {{ $empleado->slastname }}</dd>

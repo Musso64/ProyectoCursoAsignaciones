@@ -24,6 +24,10 @@ Route::bind('assignment', function ($value) {
     return Asignaciones::where('id', $value)->firstOrFail();
 });
 
+Route::bind('user', function ($value) {
+    return User::where('id', $value)->firstOrFail();
+});
+
 Route::resource('/employees', EmpleadoController::class)
 ->missing(function (Request $request) {
     return Redirect::route('employees.index');

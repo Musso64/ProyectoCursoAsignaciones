@@ -70,7 +70,7 @@
                     @foreach ($empleados as $empleado)
                     <tr>
                         <td>
-                            <img src="{{ asset('storage/images/' . $empleado->photo) }}" class="rounded-circle" width="40" height="40">
+                            <img src="{{ asset('images/' . $empleado->photo) }}" class="rounded-circle" width="40" height="40">
                         </td>
                         <td>{{ $empleado->fname }} {{ $empleado->sname }} {{ $empleado->flastname }} {{ $empleado->slastname }}</td>
                         <td>{{ $empleado->ci }}</td>

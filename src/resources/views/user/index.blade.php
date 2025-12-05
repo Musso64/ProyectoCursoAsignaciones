@@ -82,7 +82,7 @@
                 <span>
                     <p>Total de usuarios: {{ count($usuarios) }}</p>
                 </span>
-                <a href="{{ route('employees.create') }}" class="btn btn-success">Nuevo Usuario</a>
+                <a href="{{ route('user.create') }}" class="btn btn-success">Nuevo Usuario</a>
             </div>
         </div>
     </div>
